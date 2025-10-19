@@ -4,6 +4,7 @@ import { useState } from "react";
 import { FiShoppingBag, FiStar, FiUser } from "react-icons/fi";
 import Container from "./Container";
 import { FaChevronDown } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const bottomNavigation = [
   { title: "Home", link: "/" },
@@ -21,7 +22,9 @@ const Header = () => {
     <div className="w-full bg-whiteText">
       <div className="max-w-screen-xl mx-auto h-20 flex items-center justify-between px-4 lg:px-0">
         {/* Logo */}
-        <img src={logo} alt="logo" className="w-44" />
+        <Link to={"/"}>
+          <img src={logo} alt="logo" className="w-44" />
+        </Link>
 
         {/* SearchBar */}
         <div className="hidden md:inline-flex max-w-3xl w-full relative">
@@ -45,19 +48,21 @@ const Header = () => {
 
         {/* Menubar */}
         <div className="flex items-center gap-x-6 text-2xl">
-          <FiUser className="hover:text-skyText duration-200" />
-          <div className="relative block">
+          <Link to={"/profile"}>
+            <FiUser className="hover:text-skyText duration-200" />
+          </Link>
+          <Link to={"/favourite"} className="relative block">
             <FiStar className="hover:text-skyText duration-200" />
             <span className="inline-flex items-center justify-center  bg-redText text-whiteText absolute -top-1 -right-2 text-[9px] rounded-full w-4 h-4">
               0
             </span>
-          </div>
-          <div className="relative block">
+          </Link>
+          <Link to={"/cart"} className="relative block">
             <FiShoppingBag className="hover:text-skyText duration-200" />
             <span className="inline-flex items-center justify-center  bg-redText text-whiteText absolute -top-1 -right-2 text-[9px] rounded-full w-4 h-4">
               0
             </span>
-          </div>
+          </Link>
         </div>
       </div>
       <div className="w-full bg-darkText text-whiteText">
@@ -65,14 +70,15 @@ const Header = () => {
           <p className="flex items-center gap-1">
             Select Category <FaChevronDown />
           </p>
-          {bottomNavigation.map(({ title }) => (
-            <p
+          {bottomNavigation.map(({ title, link }) => (
+            <Link
+              to={link}
               key={title}
               className="uppercase hidden md:inline-flex text-sm font-semibold text-whiteText/90 hover:text-whiteText duration-200 relative overflow-hidden group"
             >
               {title}
               <span className="inline-flex w-full h-[1px] bg-whiteText absolute bottom-0 left-0 transform -translate-x-[105%] group-hover:translate-x-0 duration-200" />
-            </p>
+            </Link>
           ))}
         </Container>
       </div>
