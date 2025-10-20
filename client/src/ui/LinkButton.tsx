@@ -4,8 +4,8 @@ import { twMerge } from "tailwind-merge";
 
 interface Props {
   showButton?: Boolean;
-  link?: String;
-  className?: String;
+  link?: string;
+  className?: string;
 }
 
 const LinkButton = ({ showButton, link, className }: Props) => {
